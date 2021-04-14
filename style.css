@@ -1,0 +1,90 @@
+*,
+*::after,
+*::before {
+  /* https://css-tricks.com/box-sizing/#universal-box-sizing-with-inheritance */
+  box-sizing: inherit;
+}
+
+html,
+body {
+  /* Make the app take the browser window in height */
+  height: 100%;
+  --padding-var: 20px;
+}
+
+html {
+  /* Use the border box sizing mode by default */
+  box-sizing: border-box;
+}
+
+body,
+div {
+  /* Display those elements as flex containers */
+  display: flex;
+}
+
+body {
+  background: black;
+  color: white;
+  /* Setup the flex container as a column */
+  flex-direction: column;
+  /* Remove default body margins */
+  margin: 0;
+}
+
+body > *,
+div > * {
+  /* Make flex items not flexible by default */
+  flex: none;
+}
+
+/* In this case: header, footer, aside and main */
+body *:not(div) {
+  padding: var(--padding-var);
+}
+
+header,
+footer {
+  background: blue;
+}
+
+div,
+main {
+  /* Make those flex items flexible */
+  flex: 1 1 auto;
+  /* https://moduscreate.com/blog/how-to-fix-overflow-issues-in-css-flex-layouts/ */
+  min-height: 0;
+}
+
+aside {
+  background: red;
+  width: 150px;
+}
+
+main {
+  background: green;
+  overflow: auto;
+}
+
+@media (max-width: 640px) {
+  body {
+    color: black;
+  }
+  div {
+    flex-direction: column;
+  }
+  aside {
+    width: 100%;
+    background: pink;
+  }
+  body *:not(div) {
+    --padding-var: 10px;
+  }
+  header,
+  footer {
+    background: orangered;
+  }
+  main {
+    background: lightgreen;
+  }
+}
